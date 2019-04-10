@@ -1,0 +1,55 @@
+package br.org.catolicasc.tabuada;
+
+import android.annotation.SuppressLint;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText etNumero;
+    private ListView tabuada;
+    private Button mostrar;
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        tabuada = findViewById(R.id.tabuada);
+        mostrar = findViewById(R.id.mostrar);
+        etNumero = findViewById(R.id.etNumero);
+
+    mostrar.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int numero = Integer.valueOf(etNumero.getText().toString());
+
+            List<Integer> tabuad = new ArrayList<>();
+            for (int i = 1; i<=10; i++){
+                tabuad.add(i * numero);
+            }
+            ArrayAdapter arrayAdapter = new ArrayAdapter<>(
+                    MainActivity.this, R.layout.list_item, tabuad
+                    );
+            tabuada.setAdapter(arrayAdapter);
+
+        }
+    });
+
+}
+
+
+
+    }
+
